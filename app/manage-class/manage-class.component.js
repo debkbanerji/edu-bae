@@ -12,6 +12,9 @@ angular.module('manageClass').component('manageClass', {
 
         self.categories = [];
         self.questions = [];
+
+        self.newCategory = "";
+        self.newQuestion = {};
         // putting a console.log here won't work due to the asynchronous call
 
         // handle loading of categories
@@ -31,6 +34,13 @@ angular.module('manageClass').component('manageClass', {
         //         console.log("Error:", error);
         //     });
 
+        self.addCategory = function () {
+            if (self.newCategory != "") {
+                self.categoriesRef.child(self.newCategory).set(true);
+                self.newCategory = "";
+            }
+        };
+
         self.categoriesRef.on('child_added', function (categorySnapshot, prevChildKey) {
             self.categories.push(categorySnapshot.getKey());
 
@@ -42,7 +52,6 @@ angular.module('manageClass').component('manageClass', {
                 });
 
             });
-
 
             // TODO: add listener for removing appropriate questions
             self.questionsRef.child(categorySnapshot.getKey()).on('child_removed', function (questionSnapshot, prevChildKey) {

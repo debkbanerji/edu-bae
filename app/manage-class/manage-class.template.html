@@ -3,10 +3,28 @@
         <div class="container-fluid">
             <div class="panel" style="padding: 5px">
                 <h2 class="" style="margin: 5px">Categories</h2>
+                <!--<div class="form-group">-->
+                    <!--<label for="inputNewCategory">-->
+                        <!--Add Category-->
+                    <!--</label>-->
+                    <!--<input id="inputNewCategory" type="text" placeholder="placeholder"-->
+                           <!--class="form-control"/>-->
+                <!--</div>-->
+                <form ng-submit = "$ctrl.addCategory()" class="form-inline">
+                    <div class="form-group">
+                        <!--<label for="inputNewCategory">-->
+                            <!--Add-->
+                        <!--</label>-->
+                        <input id="inputNewCategory" type="text" placeholder="New Category"
+                        ng-model="$ctrl.newCategory" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-raised btn-success" value="Add">
+                </form>
+
                 <div
                         ng-repeat="category in $ctrl.categories"
-                        style="margin: 4%">
-                    <h4 class=""><strong>{{category}}</strong></h4>
+                        style="margin: 2%">
+                    <h4 class="">{{category}}</h4>
                 </div>
             </div>
         </div>
