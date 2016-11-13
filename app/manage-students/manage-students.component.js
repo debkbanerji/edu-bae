@@ -28,6 +28,8 @@ angular.module('manageStudents').component('manageStudents', {
             self.students.push({
                 name : studentsSnapshot.getKey(),
                 link : "/generate-test/?name=" + studentsSnapshot.getKey().toString(),
+                tempGrade : null,
+                tempCategory : ""
             });
             // add listener for getting appropriate questions
             self.studentsRef.child(studentsSnapshot.getKey()).on('child_added', function (studentSnapshot, prevChildKey) {
@@ -54,6 +56,16 @@ angular.module('manageStudents').component('manageStudents', {
             }
         };
 
+        self.addGrade = function (student) {
+            // console.log("clicked", student);
+            n = student.tempGrade;
+            if (!isNaN(parseFloat(n)) && isFinite(n) && n >= 0 && n <= 100 && student.tempCategory != null && student.tempCategory != "") { // if grade is a number between 0 and 100 and category is valid
+                self.studentsRef.child(student.name).child(student.tempCategory).set(student.tempGrade);
+            }
+            student.tempCategory = "";
+            student.tempGrade = null;
+        };
+
         self.studentsRef.on('child_removed', function (studentSnapshot, prevChildKey) {
             var index = -1;
             for (var i = 0; i < self.students.length; i++) {
@@ -61,9 +73,17 @@ angular.module('manageStudents').component('manageStudents', {
                     index = i;
                 }
             }
-            console.log("index", index);
+            // console.log("index", index);
             if (index > -1) {
                 self.students.splice(index, 1);
+            }
+            for (var i = 0; i < self.grades.length; i++) {
+                if (self.grades[i].name == studentSnapshot.getKey()) {
+                    index = i;
+                }
+            }
+            if (index > -1) {
+                self.grades.splice(index, 1);
             }
         });
     }]

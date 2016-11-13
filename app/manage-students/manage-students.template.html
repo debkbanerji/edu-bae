@@ -11,15 +11,22 @@
                     <input type="submit" class="btn btn-raised btn-success" value="Add" style="margin-top: 1px">
                 </form>
                 <div ng-repeat="student in $ctrl.students">
-                    <h4 class="">{{student.name}}</h4>
-                    <h4 data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest}"><a ng-href="{{student.link}}">Generate Test</a></h4>
+                    <h3 class="">{{student.name}}</h3>
+                    <h4 class="btn btn-raised" data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest}"><a ng-href="{{student.link}}">Generate Test</a></h4>
                     <div ng-repeat="grade in $ctrl.grades | filter: { name: student.name }">
                         <ul>
                             <li>
-                                <h6 class="">{{grade.category}} {{grade.grade}}</h6>
+                                <h6 class="">{{grade.category}}: {{grade.grade}}</h6>
                             </li>
                         </ul>
                     </div>
+                    <form ng-submit = "$ctrl.addGrade(student)" class="form-inline">
+                        <div class="form-group" style="margin-top: 5px">
+                            <input id="inputNewCategory" type="text" placeholder="Category" ng-model="student.tempCategory" class="form-control">
+                            <input id="inputNewGrade" type="number" placeholder="Enter grade [0-100]" ng-model="student.tempGrade" class="form-control">
+                        </div>
+                        <input type="submit" class="btn btn-raised btn-success" value="Add" style="margin-top: 1px">
+                    </form>
                 </div>
             </div>
         </div>
