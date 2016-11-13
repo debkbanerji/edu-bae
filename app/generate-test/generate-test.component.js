@@ -58,7 +58,7 @@ angular.module('generateTest').component('generateTest', {
                     }
                 }
 
-                console.log("MAP", self.numQuestionsMap);
+                // console.log("MAP", self.numQuestionsMap);
 
                 var studentCategories = Object.keys(self.numQuestionsMap);
                 for (i = 0; i < studentCategories.length; i++) {

@@ -8,7 +8,7 @@
                 <div
                         ng-repeat="question in $ctrl.finalQuestions track by $index"
                         style="margin: 4%">
-                    <h4 class="">{{question}}</h4>
+                    <h4 class="">{{$index + 1}}. {{question}}</h4>
                     <!--<h6 class=""><strong>Category: {{question.category}}</strong></h6>-->
                 </div>
 
