@@ -27,9 +27,9 @@ angular.module('manageStudents').component('manageStudents', {
             self.studentsRef.child(studentsSnapshot.getKey()).on('child_added', function (studentSnapshot, prevChildKey) {
                 console.log(studentsSnapshot.getKey(), studentSnapshot.getKey(), studentSnapshot.val());
                 self.grades.push({
-                    "name:": studentsSnapshot.getKey(),
-                    "category": studentSnapshot.getKey(),
-                    "grade": studentSnapshot.val()
+                    name : studentsSnapshot.getKey(),
+                    category : studentSnapshot.getKey(),
+                    grade : studentSnapshot.val()
                 });
             });
         });

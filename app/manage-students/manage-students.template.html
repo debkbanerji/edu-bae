@@ -3,10 +3,15 @@
         <div class="container-fluid">
             <div class="panel" style="padding: 10px">
                 <h2 class="" style="margin: 10px">Students</h2>
-                <div
-                        ng-repeat="student in $ctrl.students"
-                        style="margin: 1%">
+                <div ng-repeat="student in $ctrl.students">
                     <h4 class="">{{student}}</h4>
+                    <div ng-repeat="grade in $ctrl.grades | filter: { name: student }">
+                        <ul>
+                            <li>
+                                <h6 class="">{{grade.category}} {{grade.grade}}</h6>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
