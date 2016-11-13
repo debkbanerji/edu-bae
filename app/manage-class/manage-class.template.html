@@ -42,6 +42,9 @@
                         style="margin: 4%">
                     <h4 class="">{{question.content}}</h4>
                     <h6 class=""><strong>Category: {{question.category}}</strong></h6>
+                    <button class="btn btn-raised btn-success btn-xs" ng-click="$ctrl.removeQuestion(question)">
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

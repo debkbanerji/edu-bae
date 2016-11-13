@@ -50,6 +50,10 @@ angular.module('manageClass').component('manageClass', {
             }
         };
 
+        self.removeQuestion = function (question) {
+            self.questionsRef.child(question.category).child(question.content).set(null);
+        };
+
         self.categoriesRef.on('child_added', function (categorySnapshot, prevChildKey) {
             self.categories.push(categorySnapshot.getKey());
 
@@ -69,7 +73,7 @@ angular.module('manageClass').component('manageClass', {
                         index = i;
                     }
                 }
-                console.log("index", index);
+                // console.log("index", index);
                 if (index > -1) {
                     self.questions.splice(index, 1);
                 }
