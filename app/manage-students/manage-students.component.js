@@ -45,7 +45,7 @@ angular.module('manageStudents').component('manageStudents', {
                 self.newQuestionContent = "";
                 self.newQuestionCategory = "";
             }
-        }
+        };
 
         self.addStudent = function () {
             if (self.newStudent != "") {

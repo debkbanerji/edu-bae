@@ -62,7 +62,6 @@ angular.module('manageClass').component('manageClass', {
 
             });
 
-            // TODO: add listener for removing appropriate questions
             self.questionsRef.child(categorySnapshot.getKey()).on('child_removed', function (questionSnapshot, prevChildKey) {
                 var index = -1;
                 for (var i = 0; i < self.questions.length; i++) {
