@@ -21,11 +21,12 @@ angular.module('manageStudents').component('manageStudents', {
         self.students = [];
 
         self.studentsRef.on('child_added', function (studentsSnapshot, prevChildKey) {
+            self.students.push(studentsSnapshot.getKey());
+            //console.log(studentsSnapshot.getKey());
             // add listener for getting appropriate questions
             self.studentsRef.child(studentsSnapshot.getKey()).on('child_added', function (studentSnapshot, prevChildKey) {
                 console.log(studentsSnapshot.getKey(), studentSnapshot.getKey(), studentSnapshot.val());
-                self.students.push(studentsSnapshot.getKey());
-                self.categories.push({
+                self.grades.push({
                     "name:": studentsSnapshot.getKey(),
                     "category": studentSnapshot.getKey(),
                     "grade": studentSnapshot.val()

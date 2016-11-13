@@ -1,7 +1,14 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <h2>TODO: Create module 'Manage Students'</h2>
+            <div class="panel" style="padding: 10px">
+                <h2 class="" style="margin: 10px">Students</h2>
+                <div
+                        ng-repeat="student in $ctrl.students"
+                        style="margin: 1%">
+                    <h4 class="">{{student}}</h4>
+                </div>
+            </div>
         </div>
     </div>
 </div>
