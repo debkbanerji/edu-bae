@@ -14,7 +14,8 @@ angular.module('manageClass').component('manageClass', {
         self.questions = [];
 
         self.newCategory = "";
-        self.newQuestion = {};
+        self.newQuestionContent = "";
+        self.newQuestionCategory = "";
         // putting a console.log here won't work due to the asynchronous call
 
         // handle loading of categories
@@ -38,6 +39,14 @@ angular.module('manageClass').component('manageClass', {
             if (self.newCategory != "") {
                 self.categoriesRef.child(self.newCategory).set(true);
                 self.newCategory = "";
+            }
+        };
+
+        self.addQuestion = function () {
+            if (self.newQuestionCategory != "" && self.newQuestionContent != null) {
+                self.questionsRef.child(self.newQuestionCategory).child(self.newQuestionContent).set(true);
+                self.newQuestionContent = "";
+                self.newQuestionCategory = "";
             }
         };
 

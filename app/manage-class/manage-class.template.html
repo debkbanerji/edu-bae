@@ -3,24 +3,13 @@
         <div class="container-fluid">
             <div class="panel" style="padding: 5px">
                 <h2 class="" style="margin: 5px">Categories</h2>
-                <!--<div class="form-group">-->
-                    <!--<label for="inputNewCategory">-->
-                        <!--Add Category-->
-                    <!--</label>-->
-                    <!--<input id="inputNewCategory" type="text" placeholder="placeholder"-->
-                           <!--class="form-control"/>-->
-                <!--</div>-->
                 <form ng-submit = "$ctrl.addCategory()" class="form-inline">
-                    <div class="form-group">
-                        <!--<label for="inputNewCategory">-->
-                            <!--Add-->
-                        <!--</label>-->
+                    <div class="form-group" style="margin-top: 5px">
                         <input id="inputNewCategory" type="text" placeholder="New Category"
                         ng-model="$ctrl.newCategory" class="form-control">
                     </div>
-                    <input type="submit" class="btn btn-raised btn-success" value="Add">
+                    <input type="submit" class="btn btn-raised btn-success" value="Add" style="margin-top: 1px">
                 </form>
-
                 <div
                         ng-repeat="category in $ctrl.categories"
                         style="margin: 2%">
@@ -36,6 +25,18 @@
         <div class="container-fluid">
             <div class="panel" style="padding: 5px">
                 <h2 class="" style="margin: 5px">Questions</h2>
+                <form ng-submit = "$ctrl.addQuestion()" class="form-inline" style="width: 100%">
+                    <div class="form-group" style="margin-top: 5px; width: 100%">
+                        <input id="inputNewQuestionContent" type="text" placeholder="New Question"
+                               ng-model="$ctrl.newQuestionContent" class="form-control" style="width: 100%">
+                    </div>
+                    <br>
+                    <div class="form-group" style="margin-top: 1px">
+                        <input id="inputNewQuestionCategory" type="text" placeholder="Question Category"
+                               ng-model="$ctrl.newQuestionCategory" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-raised btn-success" value="Add" style="margin-top: 1px">
+                </form>
                 <div
                         ng-repeat="question in $ctrl.questions"
                         style="margin: 4%">
