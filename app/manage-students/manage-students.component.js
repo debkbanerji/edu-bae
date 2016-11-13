@@ -12,13 +12,17 @@ angular.module('manageStudents').component('manageStudents', {
     controller: ['$firebaseObject', function manageStudentsController($firebaseObject) {
         var self = this;
         self.classRef = firebase.database().ref().child("root/debug/class");
-        self.studentsRef = self.classRef.child("Students");
+        self.studentsRef = self.classRef.child("students");
         self.categoriesRef = self.classRef.child("categories");
         self.studentsObject = $firebaseObject(self.studentsRef);
         self.categoriesObject = $firebaseObject(self.categoriesRef);
 
         self.grades = [];
         self.students = [];
+
+        self.newStudent = "";
+        self.newCategory = "";
+        self.newGrade = "";
 
         self.studentsRef.on('child_added', function (studentsSnapshot, prevChildKey) {
             self.students.push({
@@ -34,6 +38,21 @@ angular.module('manageStudents').component('manageStudents', {
                 });
             });
         });
+
+        self.addGrade = function () {
+            if (self.newCategory != "" && self.newGrade != null) {
+                self.questionsRef.child(self.newQuestionCategory).child(self.newQuestionContent).set(true);
+                self.newQuestionContent = "";
+                self.newQuestionCategory = "";
+            }
+        }
+
+        self.addStudent = function () {
+            if (self.newStudent != "") {
+                self.studentsRef.child(self.newStudent).set(true);
+                self.newStudent = "";
+            }
+        };
 
         self.studentsRef.on('child_removed', function (studentSnapshot, prevChildKey) {
             var index = -1;

@@ -3,6 +3,13 @@
         <div class="container-fluid">
             <div class="panel" style="padding: 10px">
                 <h2 class="" style="margin: 10px">Students</h2>
+                <form ng-submit = "$ctrl.addStudent()" class="form-inline">
+                    <div class="form-group" style="margin-top: 5px">
+                        <input id="inputNewStudent" type="text" placeholder="New Student"
+                               ng-model="$ctrl.newStudent" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-raised btn-success" value="Add" style="margin-top: 1px">
+                </form>
                 <div ng-repeat="student in $ctrl.students">
                     <h4 class="">{{student.name}}</h4>
                     <h4 data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest}"><a ng-href="{{student.link}}">Generate Test</a></h4>
