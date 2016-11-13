@@ -9,6 +9,8 @@ angular.module('manageClass').component('manageClass', {
 
         self.categoriesObject = $firebaseObject(self.categoriesRef);
         self.questionsObject = $firebaseObject(self.questionsRef);
+
+        self.categories = [];
         // putting a console.log here won't work due to the asynchronous call
 
         // handle loading of categories
@@ -29,7 +31,8 @@ angular.module('manageClass').component('manageClass', {
         //     });
 
         self.categoriesRef.on('child_added', function(childSnapshot, prevChildKey) {
-            console.log("category child", childSnapshot.getKey());
+            // console.log("category child", childSnapshot.getKey());
+            self.categories.push(childSnapshot.getKey());
         });
     }]
 });
