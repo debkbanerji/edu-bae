@@ -56,6 +56,10 @@ angular.module('manageStudents').component('manageStudents', {
             }
         };
 
+        self.removeStudent = function (student) {
+            self.studentsRef.child(student.name).set(null);
+        };
+
         self.addGrade = function (student) {
             // console.log("clicked", student);
             n = student.tempGrade;
