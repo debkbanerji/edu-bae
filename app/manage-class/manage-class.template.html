@@ -1,12 +1,28 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <div class="panel" style="padding: 10px">
-                <h2 class="" style="margin: 10px">Categories</h2>
+            <div class="panel" style="padding: 5px">
+                <h2 class="" style="margin: 5px">Categories</h2>
                 <div
                         ng-repeat="category in $ctrl.categories"
-                        style="margin: 1%">
-                    <h4 class="">{{category}}</h4>
+                        style="margin: 4%">
+                    <h4 class=""><strong>{{category}}</strong></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="container-fluid">
+            <div class="panel" style="padding: 5px">
+                <h2 class="" style="margin: 5px">Questions</h2>
+                <div
+                        ng-repeat="question in $ctrl.questions"
+                        style="margin: 4%">
+                    <h4 class="">{{question.content}}</h4>
+                    <h6 class=""><strong>Category: {{question.category}}</strong></h6>
                 </div>
             </div>
         </div>

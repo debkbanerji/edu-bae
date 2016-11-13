@@ -36,14 +36,27 @@ angular.module('manageClass').component('manageClass', {
 
             // add listener for getting appropriate questions
             self.questionsRef.child(categorySnapshot.getKey()).on('child_added', function (questionSnapshot, prevChildKey) {
-                console.log("question", questionSnapshot.getKey());
                 self.questions.push({
-                    "text:": questionSnapshot.getKey(),
+                    "content": questionSnapshot.getKey(),
                     "category": categorySnapshot.getKey()
                 });
+
             });
 
+
             // TODO: add listener for removing appropriate questions
+            self.questionsRef.child(categorySnapshot.getKey()).on('child_removed', function (questionSnapshot, prevChildKey) {
+                var index = -1;
+                for (var i = 0; i < self.questions.length; i++) {
+                    if (self.questions[i].content == questionSnapshot.getKey()) {
+                        index = i;
+                    }
+                }
+                console.log("index", index);
+                if (index > -1) {
+                    self.questions.splice(index, 1);
+                }
+            });
         });
 
         self.categoriesRef.on('child_removed', function (childSnapshot, prevChildKey) {
@@ -52,7 +65,6 @@ angular.module('manageClass').component('manageClass', {
             if (index > -1) {
                 self.categories.splice(index, 1);
             }
-            console.log("Removed child");
         });
     }]
 });
