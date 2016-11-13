@@ -69,14 +69,18 @@ angular.module('generateTest').component('generateTest', {
                     self.categoryRef = self.questionsRef.child(category);
                     // console.log("Category2", category);
                     var categoryObj = $firebaseObject(self.categoryRef);
-                    console.log("CATEGORY", categoryObj);
+                    // console.log("CATEGORY", categoryObj);
                     categoryObj.$loaded(
                         function (categoryData) {
                             var possibleQuestions = Object.keys(categoryData);
-                            console.log("COUNT", possibleQuestions);
-                            console.log("category", category);
-                            for (i = 0; i < possibleQuestions.length; i++) {
-                                console.log("PUSH", possibleQuestions[i]);
+                            // console.log("COUNT", possibleQuestions);
+                            // console.log("category", category);
+                            var category = categoryData.$id;
+                            // console.log("category", category);
+                            var count = self.numQuestionsMap[category];
+                            // console.log("count", count);
+                            for (i = 0; i < possibleQuestions.length && i < count; i++) {
+                                // console.log("PUSH", possibleQuestions[i]);
                                 if (possibleQuestions[i].charAt(0) != '$') {
                                     self.finalQuestions.push(possibleQuestions[i]);
                                 }
