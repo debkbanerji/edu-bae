@@ -1,2 +1,2 @@
-# edu-bae
-Personalized test creation for individual students
+# EduBae
+Personalized test creation for every student
