@@ -25,16 +25,27 @@ angular.module('manageStudents').component('manageStudents', {
                 name : studentsSnapshot.getKey(),
                 link : "/generate-test/?name=" + studentsSnapshot.getKey().toString(),
             });
-            //console.log(studentsSnapshot.getKey());
             // add listener for getting appropriate questions
             self.studentsRef.child(studentsSnapshot.getKey()).on('child_added', function (studentSnapshot, prevChildKey) {
-                console.log(studentsSnapshot.getKey(), studentSnapshot.getKey(), studentSnapshot.val());
                 self.grades.push({
                     name : studentsSnapshot.getKey(),
                     category : studentSnapshot.getKey(),
                     grade : studentSnapshot.val()
                 });
             });
+        });
+
+        self.studentsRef.on('child_removed', function (studentSnapshot, prevChildKey) {
+            var index = -1;
+            for (var i = 0; i < self.students.length; i++) {
+                if (self.students[i].name == studentSnapshot.getKey()) {
+                    index = i;
+                }
+            }
+            console.log("index", index);
+            if (index > -1) {
+                self.students.splice(index, 1);
+            }
         });
     }]
 });
