@@ -11,6 +11,11 @@ a, u {
 
 }
 
+.category-text {
+    text-align: center;
+    font-size: medium;
+}
+
 
 
 .nav-bar-fade-on-hover {
