@@ -35,7 +35,7 @@ a, u {
 }
 
 .nav-bar-fade-on-hover:hover, .nav-bar-fade-on-hover:focus, .nav-bar-fade-on-hover:active {
-    background-color: #1cb1f5;
+    background-color: #e24fbd;
     color: white;
 }
 
@@ -56,9 +56,13 @@ a, u {
 }
 
 .nav-bar-fade-on-hover-main:hover, .nav-bar-fade-on-hover-main:focus, .nav-bar-fade-on-hover-main:active {
-    background-color: #e4e4e4;
+    background-color: #e479c2;
     color: white;
     text-decoration-color: white;
     cursor: pointer;
     cursor: hand;
+}
+
+.navbar-info {
+    background-color: #e241b7 !important;
 }
