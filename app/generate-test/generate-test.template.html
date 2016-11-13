@@ -6,10 +6,10 @@
                 <h2 class="" style="margin: 5px">Student Name: {{$ctrl.studentName}}</h2>
                 <h4 id = "generateDate" style="margin: 5px"></h4>
                 <div
-                        ng-repeat="question in $ctrl.finalQuestions"
+                        ng-repeat="question in $ctrl.finalQuestions track by $index"
                         style="margin: 4%">
-                    <h4 class="">{{question.content}}</h4>
-                    <h6 class=""><strong>Category: {{question.category}}</strong></h6>
+                    <h4 class="">{{question}}</h4>
+                    <!--<h6 class=""><strong>Category: {{question.category}}</strong></h6>-->
                 </div>
 
             </div>

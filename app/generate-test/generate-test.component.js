@@ -1,7 +1,7 @@
 angular.module('generateTest').component('generateTest', {
     templateUrl: 'generate-test/generate-test.template.html',
 
-    controller: ['$routeParams', '$firebaseObject', function generateTestController($routeParams, $firebaseObject) {
+    controller: ['$routeParams', '$firebaseObject', '$firebaseArray', function generateTestController($routeParams, $firebaseObject, $firebaseArray) {
         var self = this;
         self.studentName = $routeParams.name;
         self.classRef = firebase.database().ref().child("root/debug/class");
@@ -52,38 +52,48 @@ angular.module('generateTest').component('generateTest', {
                         if (grade > 99) {
                             grade = grade - 1;
                         }
-                        self.numQuestionsMap[categoryName] = (100 - grade)/((100* numCategories) - sumGrades);
+                        self.numQuestionsMap[categoryName] = (100 - grade) / ((100 * numCategories) - sumGrades);
                         // round number
                         self.numQuestionsMap[categoryName] = Math.round(self.numQuestionsMap[categoryName] * 10);
                     }
                 }
 
-
-
                 console.log("MAP", self.numQuestionsMap);
+
+                var studentCategories = Object.keys(self.numQuestionsMap);
+                for (i = 0; i < studentCategories.length; i++) {
+                    var category = studentCategories[i];
+                    var count = self.numQuestionsMap[studentCategories[i]];
+
+                    // console.log("Category", category);
+                    self.categoryRef = self.questionsRef.child(category);
+                    // console.log("Category2", category);
+                    var categoryObj = $firebaseObject(self.categoryRef);
+                    console.log("CATEGORY", categoryObj);
+                    categoryObj.$loaded(
+                        function (categoryData) {
+                            var possibleQuestions = Object.keys(categoryData);
+                            console.log("COUNT", possibleQuestions);
+                            console.log("category", category);
+                            for (i = 0; i < possibleQuestions.length; i++) {
+                                console.log("PUSH", possibleQuestions[i]);
+                                if (possibleQuestions[i].charAt(0) != '$') {
+                                    self.finalQuestions.push(possibleQuestions[i]);
+                                }
+                            }
+                        },
+
+                        function (error) {
+                            console.error("Error:", error);
+                        }
+                    );
+
+                }
             },
             function (error) {
                 console.error("Error:", error);
             }
         );
 
-        // // generate test
-        // self.questionsObj.$loaded(
-        //     function (data) {
-        //         // choose questions
-        //         var keys = Object.keys(data);
-        //         for (i = 0; i < keys.length; i++) {
-        //             if (keys[i].charAt(0) != '$') {
-        //                 var categoryName = keys[i];
-        //                 console.log("Data", categoryName);
-        //                 var categoryRef = self.questionsRef.child(categoryName);
-        //                 console.log("Category Name", categoryRef);
-        //             }
-        //         }
-        //     },
-        //     function (error) {
-        //         console.error("Error:", error);
-        //     }
-        // );
     }]
 });
