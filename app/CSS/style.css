@@ -71,6 +71,7 @@ a, u {
 .btn {
     background-color: #fa1960 !important;
     border: 1px solid #fa1960 !important;
+    color: white !important;
 }
 
 .btn:hover {
@@ -87,6 +88,10 @@ a:hover {
 }
 
 .navbar a:hover {
+    color: white !important;
+}
+
+.btn .btn-raised {
     color: white !important;
 }
 
