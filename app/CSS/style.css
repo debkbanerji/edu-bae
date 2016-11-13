@@ -2,6 +2,7 @@ a, u {
     text-decoration: none !important;
 }
 
+
 .heading {
     text-align: center;
     font-size: xx-large;
@@ -35,7 +36,7 @@ a, u {
 }
 
 .nav-bar-fade-on-hover:hover, .nav-bar-fade-on-hover:focus, .nav-bar-fade-on-hover:active {
-    background-color: #e24fbd;
+    background-color: #fa2968;
     color: white;
 }
 
@@ -56,7 +57,7 @@ a, u {
 }
 
 .nav-bar-fade-on-hover-main:hover, .nav-bar-fade-on-hover-main:focus, .nav-bar-fade-on-hover-main:active {
-    background-color: #e479c2;
+    background-color: #fa2663;
     color: white;
     text-decoration-color: white;
     cursor: pointer;
@@ -64,5 +65,5 @@ a, u {
 }
 
 .navbar-info {
-    background-color: #e241b7 !important;
+    background-color: #fa1960 !important;
 }
