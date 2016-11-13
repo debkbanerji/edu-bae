@@ -54,9 +54,12 @@ angular.module('generateTest').component('generateTest', {
                         }
                         self.numQuestionsMap[categoryName] = (100 - grade)/((100* numCategories) - sumGrades);
                         // round number
-                        self.numQuestionsMap[categoryName] = self.numQuestionsMap[categoryName] + 0.5;
+                        self.numQuestionsMap[categoryName] = Math.round(self.numQuestionsMap[categoryName] * 10);
                     }
                 }
+
+
+
                 console.log("MAP", self.numQuestionsMap);
             },
             function (error) {
