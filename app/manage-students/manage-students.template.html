@@ -4,8 +4,9 @@
             <div class="panel" style="padding: 10px">
                 <h2 class="" style="margin: 10px">Students</h2>
                 <div ng-repeat="student in $ctrl.students">
-                    <h4 class="">{{student}}</h4>
-                    <div ng-repeat="grade in $ctrl.grades | filter: { name: student }">
+                    <h4 class="">{{student.name}}</h4>
+                    <h4 data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest"><a ng-href="{{student.link}}">Generate Test</a></h4>
+                    <div ng-repeat="grade in $ctrl.grades | filter: { name: student.name }">
                         <ul>
                             <li>
                                 <h6 class="">{{grade.category}} {{grade.grade}}</h6>

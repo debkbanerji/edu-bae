@@ -21,7 +21,10 @@ angular.module('manageStudents').component('manageStudents', {
         self.students = [];
 
         self.studentsRef.on('child_added', function (studentsSnapshot, prevChildKey) {
-            self.students.push(studentsSnapshot.getKey());
+            self.students.push({
+                name : studentsSnapshot.getKey(),
+                link : "/generate-test/?name=" + studentsSnapshot.getKey().toString(),
+            });
             //console.log(studentsSnapshot.getKey());
             // add listener for getting appropriate questions
             self.studentsRef.child(studentsSnapshot.getKey()).on('child_added', function (studentSnapshot, prevChildKey) {
