@@ -12,7 +12,7 @@
                 </form>
                 <div ng-repeat="student in $ctrl.students">
                     <h3 class="">{{student.name}}</h3>
-                    <h4 class="btn btn-raised" data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest}"><a ng-href="{{student.link}}">Generate Test</a></h4>
+                    <a ng-href="{{student.link}}"><h4 class="btn btn-raised" data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest}">Generate Test</h4></a>
                     <div ng-repeat="grade in $ctrl.grades | filter: { name: student.name }">
                         <ul>
                             <li>

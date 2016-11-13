@@ -36,7 +36,7 @@ a, u {
 }
 
 .nav-bar-fade-on-hover:hover, .nav-bar-fade-on-hover:focus, .nav-bar-fade-on-hover:active {
-    background-color: #fa2968;
+    background-color: #fa3c74;
     color: white;
 }
 
@@ -57,7 +57,7 @@ a, u {
 }
 
 .nav-bar-fade-on-hover-main:hover, .nav-bar-fade-on-hover-main:focus, .nav-bar-fade-on-hover-main:active {
-    background-color: #fa2663;
+    background-color: #fa3c74;
     color: white;
     text-decoration-color: white;
     cursor: pointer;
@@ -67,3 +67,26 @@ a, u {
 .navbar-info {
     background-color: #fa1960 !important;
 }
+
+.btn {
+    background-color: #fa1960 !important;
+    border: 1px solid #fa1960 !important;
+}
+
+.btn:hover {
+    background-color: white !important;
+    color: #fa1960 !important;
+}
+
+a {
+    color: white !important;
+}
+
+a:hover {
+    color: #fa1960 !important;
+}
+
+.navbar a:hover {
+    color: white !important;
+}
+
