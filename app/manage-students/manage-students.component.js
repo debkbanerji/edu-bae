@@ -9,7 +9,7 @@
 angular.module('manageStudents').component('manageStudents', {
     templateUrl: 'manage-students/manage-students.template.html',
 
-    controller: ['$firebaseObject', function manageStudentsController($firebaseObject) {
+    controller: ['$route', '$firebaseObject', function manageStudentsController($route, $firebaseObject) {
         var self = this;
         self.classRef = firebase.database().ref().child("root/debug/class");
         self.studentsRef = self.classRef.child("students");
@@ -46,6 +46,7 @@ angular.module('manageStudents').component('manageStudents', {
                 self.questionsRef.child(self.newQuestionCategory).child(self.newQuestionContent).set(true);
                 self.newQuestionContent = "";
                 self.newQuestionCategory = "";
+                $route.reload(); // Because Liz messed up detecting changes
             }
         };
 
@@ -58,6 +59,7 @@ angular.module('manageStudents').component('manageStudents', {
 
         self.removeStudent = function (student) {
             self.studentsRef.child(student.name).set(null);
+            $route.reload(); // Because Liz messed up detecting changes
         };
 
         self.addGrade = function (student) {
@@ -68,6 +70,7 @@ angular.module('manageStudents').component('manageStudents', {
             }
             student.tempCategory = "";
             student.tempGrade = null;
+            $route.reload(); // Because Liz messed up detecting changes
         };
 
         self.studentsRef.on('child_removed', function (studentSnapshot, prevChildKey) {
