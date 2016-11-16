@@ -50,12 +50,12 @@ angular.module('auth').component('auth', {
             // $location.path('manage-class');
             // $window.location.reload();
             // The signed-in user info.
-            console.log("REDIRECTED");
-            console.log(result.user);
-            console.log($location.path());
+            // console.log("REDIRECTED");
+            // console.log(result.user);
+            // console.log($location.path());
             if (result.user && $location.path() == "/auth") {
                 // Document.getElementById("authScreen").innerHTML = "<h2>Loading...</h2>";
-                console.log("redirecting");
+                // console.log("redirecting");
                 $location.path('/manage-class');
                 $window.location.reload();
             }
@@ -75,7 +75,7 @@ angular.module('auth').component('auth', {
         // console.log("logged user first");
         if (user) {
             // $location.url('/manage-class');
-            console.log(user);
+            // console.log(user);
             $location.path('manage-class');
             // $window.location.reload();
         }
