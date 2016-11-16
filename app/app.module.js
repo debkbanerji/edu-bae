@@ -1,1 +1,1 @@
-angular.module('edubaeApp', ['ngRoute', 'ngAnimate', 'firebase', 'navBar', 'manageClass', 'about', 'manageStudents', 'generateTest']);
+angular.module('edubaeApp', ['ngRoute', 'ngAnimate', 'firebase', 'navBar', 'manageClass', 'about', 'manageStudents', 'generateTest', 'auth']);

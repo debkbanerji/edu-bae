@@ -6,11 +6,13 @@ angular.module('edubaeApp').config(['$locationProvider', '$routeProvider',
             template: '<about></about>'
         }).when('/manage-class', {
             template: '<manage-class></manage-class>'
+        }).when('/auth', {
+            template: '<auth></auth>'
         }).when('/manage-students', {
             template: '<manage-students></manage-students>'
         }).when('/generate-test', {
             template: '<generate-test></generate-test>'
-        }).otherwise('/manage-class');
+        }).otherwise('/auth');
 
 
         // use the HTML5 History API

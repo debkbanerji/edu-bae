@@ -3,7 +3,8 @@ angular.module('manageClass').component('manageClass', {
 
     controller: ['$firebaseObject', function manageClassController($firebaseObject) {
         var self = this;
-        self.classRef = firebase.database().ref().child("root/debug/class");
+        var user = firebase.auth().currentUser;
+        self.classRef = firebase.database().ref().child("users").child(user.uid).child("class");
         self.categoriesRef = self.classRef.child("categories");
         self.questionsRef = self.classRef.child("questions");
 

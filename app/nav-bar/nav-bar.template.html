@@ -17,6 +17,7 @@
                 <li data-ng-class="{'active': $ctrl.manageStudents, 'current-tab': $ctrl.manageStudents, 'nav-bar-fade-on-hover': !$ctrl.manageStudents}"><a href="/manage-students">Manage Students</a></li>
                 <!--<li data-ng-class="{'active': $ctrl.generateTest, 'current-tab': $ctrl.generateTest, 'nav-bar-fade-on-hover': !$ctrl.generateTest}"><a href="/generate-test">Generate Test</a></li>-->
                 <li data-ng-class="{'active': $ctrl.about, 'current-tab': $ctrl.about, 'nav-bar-fade-on-hover': !$ctrl.about}"><a href="/about">About</a></li>
+                <li id="sign_out" class="nav-bar-fade-on-hover" ng-click="$ctrl.signOut()" style="cursor: pointer"><a>Sign Out</a></li>
 
             </ul>
         </div><!-- /.navbar-collapse -->

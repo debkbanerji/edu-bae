@@ -11,7 +11,8 @@ angular.module('manageStudents').component('manageStudents', {
 
     controller: ['$route', '$firebaseObject', function manageStudentsController($route, $firebaseObject) {
         var self = this;
-        self.classRef = firebase.database().ref().child("root/debug/class");
+        var user = firebase.auth().currentUser;
+        self.classRef = firebase.database().ref().child("users").child(user.uid).child("class");
         self.studentsRef = self.classRef.child("students");
         self.categoriesRef = self.classRef.child("categories");
         self.studentsObject = $firebaseObject(self.studentsRef);

@@ -4,7 +4,8 @@ angular.module('generateTest').component('generateTest', {
     controller: ['$routeParams', '$firebaseObject', '$firebaseArray', function generateTestController($routeParams, $firebaseObject, $firebaseArray) {
         var self = this;
         self.studentName = $routeParams.name;
-        self.classRef = firebase.database().ref().child("root/debug/class");
+        var user = firebase.auth().currentUser;
+        self.classRef = firebase.database().ref().child("users").child(user.uid).child("class");
         n = new Date();
         y = n.getFullYear();
         m = n.getMonth() + 1;
