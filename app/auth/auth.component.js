@@ -1,44 +1,29 @@
 angular.module('auth').component('auth', {
     templateUrl: 'auth/auth.template.html',
 
-    controller: ['$window', '$location', '$routeParams', function generateTestController($window, $location, $routeParams) {
+    controller: ['$timeout', '$scope', '$window', '$location', function generateTestController($timeout, $scope, $window, $location) {
         var self = this;
 
         provider = new firebase.auth.GoogleAuthProvider();
         var user = firebase.auth().currentUser;
 
-        if (user) {
-            document.getElementById("authScreen").innerHTML = "<h2>Loading...</h2>";
-        }
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                document.getElementById("authScreen").style.visibility = "visible";
+                document.getElementById("loading").style.visibility = "hidden";
+            } else {
+                document.getElementById("authScreen").style.visibility = "hidden";
+                document.getElementById("loading").style.visibility = "visible";
+                $location.path('manage-class');
+                // $window.location.reload();
+            }
+        });
 
         self.signIn = function () {
-            // firebase.auth().signInWithRedirect(provider);
-            // firebase.auth().signInWithPopup(provider).then(function(result) {
-            //     // This gives you a Google Access Token. You can use it to access the Google API.
-            //     var token = result.credential.accessToken;
-            //     // The signed-in user info.
-            //     var user = result.user;
-            //     // ...
-            //     // console.log("POPUP SUCCESSFUL!!!");
-            //     $location.path('manage-class');
-            //     $window.location.reload();
-            //     // $route.reload();
-            // }).catch(function(error) {
-            //     // Handle Errors here.
-            //     console.log("error");
-            //     var errorCode = error.code;
-            //     var errorMessage = error.message;
-            //     // The email of the user's account used.
-            //     var email = error.email;
-            //     // The firebase.auth.AuthCredential type that was used.
-            //     var credential = error.credential;
-            //     // ...
-            // });
-            document.getElementById("authScreen").innerHTML = "<h2>Loading...</h2>";
             firebase.auth().signInWithRedirect(provider);
         };
 
-        // firebase.auth().signInWithRedirect(provider);
 
         firebase.auth().getRedirectResult().then(function(result) {
             if (result.credential) {
@@ -47,15 +32,7 @@ angular.module('auth').component('auth', {
                 // ...
             }
 
-            // $location.path('manage-class');
-            // $window.location.reload();
-            // The signed-in user info.
-            // console.log("REDIRECTED");
-            // console.log(result.user);
-            // console.log($location.path());
             if (result.user && $location.path() == "/auth") {
-                // Document.getElementById("authScreen").innerHTML = "<h2>Loading...</h2>";
-                // console.log("redirecting");
                 $location.path('/manage-class');
                 $window.location.reload();
             }
@@ -71,13 +48,11 @@ angular.module('auth').component('auth', {
             // ...
         });
 
-        // console.log(user);
-        // console.log("logged user first");
         if (user) {
-            // $location.url('/manage-class');
-            // console.log(user);
             $location.path('manage-class');
-            // $window.location.reload();
         }
+
     }]
 });
+
+
