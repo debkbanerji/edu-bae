@@ -1,12 +1,10 @@
 angular.module('auth').component('auth', {
     templateUrl: 'auth/auth.template.html',
 
-    controller: ['$timeout', '$scope', '$window', '$location', function generateTestController($timeout, $scope, $window, $location) {
+    controller: ['$timeout', '$scope', '$rootScope', '$window', '$location', function generateTestController($timeout, $scope, $rootScope, $window, $location) {
         var self = this;
 
         provider = new firebase.auth.GoogleAuthProvider();
-        var user = firebase.auth().currentUser;
-
 
         firebase.auth().onAuthStateChanged(function(user) {
             if (!user) {
@@ -15,8 +13,10 @@ angular.module('auth').component('auth', {
             } else {
                 document.getElementById("authScreen").style.visibility = "hidden";
                 document.getElementById("loading").style.visibility = "visible";
-                $location.path('manage-class');
-                // $window.location.reload();
+                $location.path('/manage-class');
+                $rootScope.$apply(function() {
+                    $location.path("/manage-class");
+                });
             }
         });
 
@@ -33,8 +33,10 @@ angular.module('auth').component('auth', {
             }
 
             if (result.user && $location.path() == "/auth") {
-                $location.path('/manage-class');
-                $window.location.reload();
+                $rootScope.$apply(function() {
+                    $location.path("/manage-class");
+                    // console.log($location.path());
+                });
             }
             var user = result.user;
         }).catch(function(error) {
@@ -47,10 +49,6 @@ angular.module('auth').component('auth', {
             var credential = error.credential;
             // ...
         });
-
-        if (user) {
-            $location.path('manage-class');
-        }
 
     }]
 });
